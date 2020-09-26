@@ -92,7 +92,7 @@ def evaluateCT():
     logging.info("data sent for evaluation {}".format(data))
 
     for i in range(len(data["cluster"])):
-        if len(data["cluster"] != 0):
+        if len(data["cluster"]) != 0:
             str1 = data["infected"]["genome"]
             str2 = data["origin"]["genome"]
             # ITERATE THROUGH CLUSTERS ALSO 
