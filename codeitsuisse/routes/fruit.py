@@ -3,6 +3,6 @@ EXPORT = {
     'maRamubutan' : 24,
     'maPineapple': 73,
     'maPomegranate': 23,
-    'maAvocado': 1,
+    'maAvocado': 2,
     'maWatermelon': 47
 }
