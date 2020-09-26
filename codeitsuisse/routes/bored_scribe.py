@@ -59,11 +59,9 @@ def scribe(string, id_in):
     # start_string = min(attempts_list, key=len)
     start_string = word_list
     cur_string = "".join(start_string)
-    try:
-        count, max_string,(start_ind, end_ind) = countPallindrome(cur_string)
-    except:
-        logging.info("data sent for evaluation {}".format(start_string))
-        return {"id": id_in, "encryptionCount": 0, "originalText":  input_str}
+    count, max_string,(start_ind, end_ind) = countPallindrome(cur_string)
+    if count == 0:
+        return {"id": id_in, "encryptionCount": 0, "originalText":  " ".join(start_string)}
     counter = 0
     while True:
         ceaser_key = sum(list(map(lambda x: ord(x), max_string)))+count

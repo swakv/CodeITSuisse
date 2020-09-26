@@ -1,34 +1,13 @@
-input = [{"searchItemName":"Samsung Aircon","items":["Smsng Auon","Amsungh Aircon","Samsunga Airon"]}]
 
-# import numpy as np
+import logging
+import json
 
-# def levenshtein(seq1, seq2):
-#     size_x = len(seq1) + 1
-#     size_y = len(seq2) + 1
-#     matrix = np.zeros ((size_x, size_y))
-#     for x in range(size_x):
-#         matrix [x, 0] = x
-#     for y in range(size_y):
-#         matrix [0, y] = y
+from flask import request, jsonify
 
-#     for x in range(1, size_x):
-#         for y in range(1, size_y):
-#             if seq1[x-1] == seq2[y-1]:
-#                 matrix [x,y] = min(
-#                     matrix[x-1, y] + 1,
-#                     matrix[x-1, y-1],
-#                     matrix[x, y-1] + 1
-#                 )
-#             else:
-#                 matrix [x,y] = min(
-#                     matrix[x-1,y] + 1,
-#                     matrix[x-1,y-1] + 1,
-#                     matrix[x,y-1] + 1
-#                 )
-#     print (matrix)
-#     return (matrix[size_x - 1, size_y - 1])
+from codeitsuisse import app
 
-# levenshtein("Samsung Aircon", "Smsng Auon")
+logger = logging.getLogger(__name__)
+
 
 import numpy as np
 import sys
@@ -113,12 +92,12 @@ def listAllSequence(StringA,StringB):
         else:
             oriA = oriA[:element[1]]+oriB[element[2]]+ oriA[1+element[1]:] 
     return oriA
-    # for path in allSequence:
-    #     print(len(path[0]))
-        # if(len(path[0])>0):
-        #     print(path[0])
-        #     print(" -> ".join(path[0])," -> ",path[1])
-        # else:
-        #     print(StringA," -> ",StringB)
 
-listAllSequence("Samsung Aircon", "Amsungh Aircon")
+
+@app.route('/inventory-management', methods=['POST'])
+def evaluateIM():
+    data = request.get_json()
+    logging.info("data sent for evaluation {}".format(data))
+    result = {}
+    logging.info("My result :{}".format(result))
+    return json.dumps(result)
