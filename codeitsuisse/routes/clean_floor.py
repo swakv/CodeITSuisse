@@ -33,7 +33,10 @@ def evaluateCF():
                     floor.pop()
                     floor.pop()
                     count+=1
-                    floor[-1] -=1
+                    try:
+                        floor[-1] -= 1
+                    except:
+                        break
             else:
                 floor[-2]-=floor[-1]
                 floor[-2]-=1
