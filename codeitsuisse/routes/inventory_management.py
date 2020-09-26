@@ -105,9 +105,9 @@ def evaluateIM():
         database = case["items"]
         for item in database:
             heapq.heappush(values, listAllSequence(query_string,item))
-        answers.append({"searchItemName":query_string, "searchResult":[
-            list(map(lambda x:x[1],heapq.nsmallest(values,10)))
-        ]})
+        answers.append({"searchItemName":query_string, "searchResult":
+            list(map(lambda x:x[1],heapq.nsmallest(values,min(10,len(values)))))
+        })
     result = answers
     logging.info("My result :{}".format(result))
     return json.dumps(result)
