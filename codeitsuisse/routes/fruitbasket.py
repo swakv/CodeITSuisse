@@ -14,6 +14,7 @@ def evaluateMFB():
     encoding = 'utf-8'
     data = data.decode(encoding)
     print(data)
+    data = eval(data)
     arr = []
     for key, val in data.items():
         arr.append(val)
