@@ -117,68 +117,83 @@ def ucs(start_node, goal_node, graph):
                 timer += 1
 
 
-def ucs_subop(start_node, goal_node, graph, min_len):
-    """
-    Finds and returns a path, if it exists, between the start node and the goal node.
-    """
-    timer = 0
-    explored = {start_node}
-    frontier = []
-    cost = 1
-    for action, child_node in graph[start_node]:
+# def ucs_subop(start_node, goal_node, graph, min_len):
+#     """
+#     Finds and returns a path, if it exists, between the start node and the goal node.
+#     """
+#     timer = 0
+#     explored = {start_node}
+#     frontier = []
+#     cost = 1
+#     for action, child_node in graph[start_node]:
 
-        heapq.heappush(
-            frontier,
-            (
-                cost,
-                cost,
-                timer,
-                child_node,
-                [action]
-            )
-        )
-        timer += 1
-    while frontier:
-        _, g, _, current_node, path = heapq.heappop(frontier)
+#         heapq.heappush(
+#             frontier,
+#             (
+#                 cost,
+#                 cost,
+#                 timer,
+#                 child_node,
+#                 [action]
+#             )
+#         )
+#         timer += 1
+#     while frontier:
+#         _, g, _, current_node, path = heapq.heappop(frontier)
 
-        if current_node in explored:
-            continue
-        if current_node == goal_node:
-            if len(path) <= min_len:
-                continue
-            print(g, path)
-            return path
-        # explored.add(current_node)
+#         if current_node in explored:
+#             continue
+#         if current_node == goal_node:
+#             if len(path) <= min_len:
+#                 continue
+#             print(g, path)
+#             return path
+#         explored.add(current_node)
 
-        for action, child_node in graph[current_node]:
+#         for action, child_node in graph[current_node]:
 
-            if child_node not in explored:
-                heapq.heappush(
-                    frontier,
-                    (
-                        g+cost,
-                        g+cost,
-                        timer,
-                        child_node,
-                        path+[action]
-                    )
-                )
-                timer += 1
+#             if child_node not in explored:
+#                 heapq.heappush(
+#                     frontier,
+#                     (
+#                         g+cost,
+#                         g+cost,
+#                         timer,
+#                         child_node,
+#                         path+[action]
+#                     )
+#                 )
+#                 timer += 1
 
 
 def answer(data):
     state_graph = (construct_graph(**parse(data)))
     path = ucs(1, 64, state_graph)
-    path_bad = ucs_subop(1, 64, state_graph, len(path)+1)
+    # path_bad = ucs_subop(1, 64, state_graph, len(path)+1)
     n = data["players"]
     rolls = []
     for x in range(len(path)):
-        for players in range(n-1):
-            if isinstance(path_bad[x], tuple):
-                rolls.append(path_bad[x][0])
-                rolls.append(path_bad[x][1])
+        if x < len(path)-1:
+            for players in range(n-1):
+                if isinstance(path[x], tuple):
+                    rolls.append(path[x][0])
+                    rolls.append(path[x][1])
+                else:
+                    rolls.append(path[x])
+        else:
+            if isinstance(path[x], tuple):
+                rolls.append(path[x][0])
+                if path[x][1]!= 6:
+
+                    rolls.append(6)
+                else:
+                    rolls.append(5)
             else:
-                rolls.append(path_bad[x])
+                if path[x]!= 6:
+
+                    rolls.append(6)
+                else:
+                    rolls.append(5)
         if isinstance(path[x], tuple):
             rolls.append(path[x][0])
             rolls.append(path[x][1])
