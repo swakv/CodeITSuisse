@@ -83,7 +83,7 @@ def listAllSequence(StringA,StringB):
     matrix = getMemorizationMatrix(StringA,StringB)
     allSequence = backtrackSequence(matrix,StringA,StringB)
     if len(allSequence) == 0:
-        return 0, 0
+        return None
     path = allSequence[0]
     # print(path[0])
     for element in path[0][::-1]:
@@ -109,7 +109,7 @@ def evaluateIM():
             heapq.heappush(values, listAllSequence(query_string,item))
         # values = sorted(values,key = lambda x:x[0])[:10]
         values = values.sort()
-        if not values:
+        if values == None:
             answers.append({"searchItemName":query_string, "searchResult":""})
         else:
             answers.append({"searchItemName":query_string, "searchResult":list(map(lambda x:x[1],values))
