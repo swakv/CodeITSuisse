@@ -14,7 +14,6 @@ import wordninja
 def countPallindrome(s):
     max_val = -math.inf
     counter = 0
-    max_palindrome = ""
     max_ind = (0,1)
     for i in range(len(s)):
         for j in range(i+2, len(s)+1):
@@ -60,7 +59,10 @@ def scribe(string, id_in):
     # start_string = min(attempts_list, key=len)
     start_string = word_list
     cur_string = "".join(start_string)
-    count, max_string,(start_ind, end_ind) = countPallindrome(cur_string)
+    try:
+        count, max_string,(start_ind, end_ind) = countPallindrome(cur_string)
+    except:
+        print(id_in)
     counter = 0
     while True:
         ceaser_key = sum(list(map(lambda x: ord(x), max_string)))+count
