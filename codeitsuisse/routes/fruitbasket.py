@@ -2,7 +2,7 @@ import logging
 import json
 
 from flask import request, jsonify
-
+from codeitsuisse.routes.fruit import EXPORT
 from codeitsuisse import app
 
 logger = logging.getLogger(__name__)
@@ -16,11 +16,16 @@ def evaluateMFB():
     print(data)
     data = eval(data)
     arr = []
-    # {'maRamubutan': 17, 'maPineapple': 23, 'maApple': 75} , our result 2880
+    result = 0
+    # {'maRamubutan': 17, 'maPineapple': 23, 'maApple': 75} our result 2880 10 20 30
+    # {'maPomegranate': 29, 'maRamubutan': 58, 'maApple': 76} our result 6770 10 20 70 
     for key, val in data.items():
-        arr.append(val)
-    
+        if key in EXPORT:
+            result += EXPORT[key]*val
+        else:
+            logging.info("New Fruit {}".format(key))
+            result += val*50
+            
     logging.info("data sent for evaluation {}".format(data))
-    result = arr[0]*10 + arr[1]*20 + arr[2]*70
     logging.info("My result :{}".format(result))
     return json.dumps(result)
