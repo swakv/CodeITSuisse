@@ -29,11 +29,14 @@ def line_intersection(line1, line2):
 
 
     if isBetween(line2[0], line2[1], (x,y)):  
+        print(line2[0]) 
         return round(x, 2), round(y, 2)
     else:
         return 0
 
 def isBetween(a, b, c):
+    if a == c or b ==c:
+        return False
     crossproduct = (c[1] - a[1]) * (b[0] - a[0]) - (c[0] - a[0]) * (b[1] - a[1])
 
     # compare versus epsilon for floating point values, or != 0 if using integers
@@ -77,3 +80,5 @@ for j in range(len(shape_arr)):
 
 result = [{"x": val[0],"y":val[1]} for val in final_arr]
 print(result)
+
+print(isBetween((1,1), (2,2), (1,1)))

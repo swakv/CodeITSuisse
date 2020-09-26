@@ -24,12 +24,15 @@ def line_intersection(line1, line2):
     y = det(d, ydiff) / div
 
 
-    if isBetween(line2[0], line2[1], (x,y)):  
+    if isBetween(line2[0], line2[1], (x,y)): 
         return round(x, 2), round(y, 2)
     else:
         return 0
 
 def isBetween(a, b, c):
+    if a == c or b ==c:
+        return False
+
     crossproduct = (c[1] - a[1]) * (b[0] - a[0]) - (c[0] - a[0]) * (b[1] - a[1])
 
     # compare versus epsilon for floating point values, or != 0 if using integers
