@@ -27,8 +27,14 @@ def evaluateCF():
             count+= floor[-1]*2+1
             if floor[-1]>=floor[-2]:
                 if (floor[-1]-floor[-2])%2==0:
-                    floor[-2] = 1
-                    floor.pop()
+                    if len(floor) != 2:
+                        floor[-2] = 1
+                        floor.pop()
+                    else:
+                        floor.pop()
+                        floor.pop()
+                        count -= 1
+                        break
                 else:
                     floor.pop()
                     floor.pop()
