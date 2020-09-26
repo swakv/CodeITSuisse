@@ -11,6 +11,8 @@ logger = logging.getLogger(__name__)
 @app.route('/fruitbasket', methods=['POST'])
 def evaluateMFB():
     data = request.get_data()
+    encoding = 'utf-8'
+    data.decode(encoding)
     print(data)
     if data == None:
         return 0
