@@ -89,7 +89,7 @@ def evaluateBS():
         except Exception as ex:
             template = "An exception of type {0} occurred. Arguments:\n{1!r}"
             message = template.format(type(ex).__name__, ex.args)
-            print(message)
+            logging.info(message)
     result = answer
     # logging.info("My result :{}".format(result))
     return json.dumps(result)
