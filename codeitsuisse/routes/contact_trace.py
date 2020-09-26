@@ -92,43 +92,46 @@ def evaluateCT():
     logging.info("data sent for evaluation {}".format(data))
 
     for i in range(len(data["cluster"])):
-        str1 = data["infected"]["genome"]
-        str2 = data["origin"]["genome"]
-        # ITERATE THROUGH CLUSTERS ALSO 
-        str3 = data["cluster"][i]["genome"]
-        sim1 = listAllSequence(str1, str2)
-        sim2 = listAllSequence(str2, str3)
-
-
-        output = []
-
-        if (sim1 == sim2):
-            if sim1 > 1:
-                str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
-            else:
-                str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
-            output.append(str_name)
-            if sim1 > 1:
-                str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][0]["name"]
-            else:
-                str_name = data["infected"]["name"] + "->" + data["cluster"][0]["name"]
-            output.append(str_name)
-
-        elif sim1 > sim2:
-            if sim1 > 1:
-                str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][0]["name"] + "->" + data["origin"]["name"]
-            elif sim2 > 1:
-                str_name = data["infected"]["name"] + "->" + data["cluster"][0]["name"] + "*"+ "->" + data["origin"]["name"]
-            else:
-                str_name = data["infected"]["name"] + "->" + data["cluster"][0]["name"] + "->" + data["origin"]["name"]
+        if len(data["cluster"] != 0):
             
-            output.append(str_name)
-        else:
-            if sim1>1:
-                str_name = data["infected"]["name"] + "*"+ "->" + data["origin"]["name"]
+
+            str1 = data["infected"]["genome"]
+            str2 = data["origin"]["genome"]
+            # ITERATE THROUGH CLUSTERS ALSO 
+            str3 = data["cluster"][i]["genome"]
+            sim1 = listAllSequence(str1, str2)
+            sim2 = listAllSequence(str2, str3)
+
+
+            output = []
+
+            if (sim1 == sim2):
+                if sim1 > 1:
+                    str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
+                else:
+                    str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+                output.append(str_name)
+                if sim1 > 1:
+                    str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"]
+                else:
+                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"]
+                output.append(str_name)
+
+            elif sim1 > sim2:
+                if sim1 > 1:
+                    str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
+                elif sim2 > 1:
+                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
+                else:
+                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
+                
+                output.append(str_name)
             else:
-                str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
-            output.append(str_name)
+                if sim1>1:
+                    str_name = data["infected"]["name"] + "*"+ "->" + data["origin"]["name"]
+                else:
+                    str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+                output.append(str_name)
 
     result = output
     logging.info("My result :{}".format(result))
