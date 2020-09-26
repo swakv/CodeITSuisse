@@ -47,33 +47,38 @@ def encrypt(text, s):
 
 
 def scribe(string, id_in):
-    input_str = string
-    rotations = [encrypt(string, x) for x in range(26)]
-    attempts_list = []
-    for attempt in rotations:
+    try:
+        input_str = string
+        rotations = [encrypt(string, x) for x in range(26)]
+        attempts_list = []
+        for attempt in rotations:
 
-        word_list = wordninja.split(attempt)
-        if len(word_list)<len(string)/3:
-            break
-        attempts_list.append(word_list)
+            word_list = wordninja.split(attempt)
+            if len(word_list)<len(string)/3:
+                break
+            attempts_list.append(word_list)
 
-    # start_string = min(attempts_list, key=len)
-    start_string = word_list
-    cur_string = "".join(start_string)
-    count, max_string,(start_ind, end_ind) = countPallindrome(cur_string)
-    if count == 0:
-        return {"id": id_in, "encryptionCount": 0, "originalText":  " ".join(start_string)}
-    counter = 0
-    while True:
-        ceaser_key = sum(list(map(lambda x: ord(x), max_string)))+count
-        new_str = encrypt(cur_string, ceaser_key)
-        counter += 1
-        # print(new_str, input_str)
-        if new_str == input_str:
-            break
-        cur_string = new_str
-        max_string = cur_string[start_ind:end_ind]
-    return {"id": id_in, "encryptionCount": counter, "originalText":  " ".join(start_string)}
+        # start_string = min(attempts_list, key=len)
+        start_string = word_list
+        cur_string = "".join(start_string)
+        count, max_string,(start_ind, end_ind) = countPallindrome(cur_string)
+        if count == 0:
+            return {"id": id_in, "encryptionCount": 0, "originalText":  " ".join(start_string)}
+        counter = 0
+        while True:
+            ceaser_key = sum(list(map(lambda x: ord(x), max_string)))+count
+            new_str = encrypt(cur_string, ceaser_key)
+            counter += 1
+            # print(new_str, input_str)
+            if new_str == input_str:
+                break
+            cur_string = new_str
+            max_string = cur_string[start_ind:end_ind]
+        return {"id": id_in, "encryptionCount": counter, "originalText":  " ".join(start_string)}
+    except Exception as ex:
+            template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+            message = template.format(type(ex).__name__, ex.args)
+            logging.info(message)
 
 @app.route('/bored-scribe', methods=['POST'])
 def evaluateBS():
