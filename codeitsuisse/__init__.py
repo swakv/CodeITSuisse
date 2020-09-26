@@ -10,3 +10,4 @@ import codeitsuisse.routes.fruitbasket
 import codeitsuisse.routes.olympiad
 import codeitsuisse.routes.cluster
 import codeitsuisse.routes.social_distancing
+import codeitsuisse.routes.intelligent_farming
