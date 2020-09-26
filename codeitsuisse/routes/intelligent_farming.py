@@ -87,12 +87,12 @@ def gmo(string):
     return construct_output(structures)
 
 def construct_output(structures):
-    if "AA" in structures:
+    if structures["AA"]:
         end = "AA"
         del structures["AA"]
-    elif "A" in structures:
+    elif structures["A"]:
         end = "A"
-        del structures["A"]
+        structures["A"]-=1
     
     accum = ""
     for key, value in structures.items():
