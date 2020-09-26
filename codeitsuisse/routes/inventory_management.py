@@ -119,7 +119,10 @@ def evaluateIM():
             answers.append({"searchItemName":query_string, "searchResult":""})
         else:
             values = values.sort()
-            answers.append({"searchItemName":query_string, "searchResult":list(map(lambda x:x[1],values))
+            if values == None:
+                answers.append({"searchItemName":query_string, "searchResult":""})
+            else: 
+                answers.append({"searchItemName":query_string, "searchResult":list(map(lambda x:x[1],values))
         })
     result = answers
     logging.info("My result :{}".format(result))
