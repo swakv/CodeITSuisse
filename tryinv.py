@@ -91,7 +91,7 @@ def backtrackSequence(matrix,  StringA, StringB, i=None, j=None):
                 deviation = path[2]
                 path[1] = cS[0:i+deviation-1] + StringB[j-1] + cS[i+deviation:len(cS)]
                 # path[0].append(cS + " replace " + StringA[i-1]  + " with " + StringB[j-1] +  "("+str(i-1+deviation)+")")
-                path[0].append(("r",i-1,StringB[j-1] ))
+                path[0].append(("r",i-1,j-1))
             paths.extend(allPaths)
             # print('Paths',paths)
         return paths
@@ -101,6 +101,7 @@ def listAllSequence(StringA,StringB):
     allSequence = backtrackSequence(matrix,StringA,StringB)
     path = allSequence[0]
     print(path[0])
+    print(StringA)
     # for path in allSequence:
     #     if(len(path[0])>0):
     #         print(path[0])
