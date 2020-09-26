@@ -82,6 +82,8 @@ def listAllSequence(StringA,StringB):
     StringB = StringB.lower()
     matrix = getMemorizationMatrix(StringA,StringB)
     allSequence = backtrackSequence(matrix,StringA,StringB)
+    if len(allSequence) == 0:
+        return 0, 0
     path = allSequence[0]
     print(path[0])
     for element in path[0][::-1]:
