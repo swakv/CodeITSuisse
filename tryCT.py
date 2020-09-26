@@ -41,14 +41,14 @@ def levenshtein(seq1, seq2):
                     matrix[x,y-1] + 1
                 )
     # print (matrix)
-    return (matrix[size_x - 1, size_y - 1])
+    return (matrix, matrix[size_x - 1, size_y - 1])
 
 str1 = data["infected"]["genome"]
 str2 = data["origin"]["genome"]
 # ITERATE THROUGH CLUSTERS ALSO 
 str3 = data["cluster"][0]["genome"]
-sim1 = levenshtein(str1, str2)
-sim2 = levenshtein(str2, str3)
+sim1, matrix = levenshtein(str1, str2)
+sim2, matrix = levenshtein(str2, str3)
 
 output = []
 
