@@ -71,7 +71,7 @@ def backtrackSequence(matrix,  StringA, StringB, i=None, j=None):
                 path[1] = cS[0:i+deviation-1] + cS[i+deviation:len(cS)]
                 path[2] = deviation - 1
                 #print(cS + " delete " + StringA[i-1] + " " + path[1] + " " + "("+str(i)+","+str(j)+")")
-                path[0].append(cS + " delete " + StringA[i-1] + "("+str(i-1+deviation)+")")
+                path[0].append(("-" ,i-1))
             paths.extend(allPaths)
             #print('Paths',paths)
         if(matrix[i][j-1] + 1 == matrix[i][j] and j-1 >= 0):
@@ -81,7 +81,7 @@ def backtrackSequence(matrix,  StringA, StringB, i=None, j=None):
                 deviation = path[2]
                 path[1] = cS[0:i+deviation] + StringB[j-1] + cS[i+deviation:len(cS)]
                 path[2] = deviation + 1
-                path[0].append(cS + " insert " + StringB[j-1] +  "("+str(i-1+deviation)+")")
+                path[0].append(("+",j-1))
             paths.extend(allPaths)
             #print('Paths',paths)
         if(matrix[i-1][j-1] + 1 == matrix[i][j] and i-1 >= 0 and j-1 >= 0):
@@ -91,7 +91,7 @@ def backtrackSequence(matrix,  StringA, StringB, i=None, j=None):
                 deviation = path[2]
                 path[1] = cS[0:i+deviation-1] + StringB[j-1] + cS[i+deviation:len(cS)]
                 # path[0].append(cS + " replace " + StringA[i-1]  + " with " + StringB[j-1] +  "("+str(i-1+deviation)+")")
-                path[0].append((StringA[i-1] ,StringB[j-1] ))
+                path[0].append(("r",i-1,StringB[j-1] ))
             paths.extend(allPaths)
             # print('Paths',paths)
         return paths

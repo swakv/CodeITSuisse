@@ -78,13 +78,13 @@ def scribe(string, id_in):
 @app.route('/bored-scribe', methods=['POST'])
 def evaluateBS():
     data = request.get_json()
-    logging.info("data sent for evaluation {}".format(data))
+    # logging.info("data sent for evaluation {}".format(data))
     answer = []
     for ind, case in enumerate(data):
-        if ind < 2000:
+        if ind < 130 and ind>150:
             answer.append(scribe(case['encryptedText'],case['id']))
         else:
             answer.append({"id": case["id"], "encryptionCount": 0, "originalText":  case['encryptedText']})
     result = answer
-    logging.info("My result :{}".format(result))
+    # logging.info("My result :{}".format(result))
     return json.dumps(result)
