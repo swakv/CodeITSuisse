@@ -14,13 +14,11 @@ def evaluateMFB():
     encoding = 'utf-8'
     data = data.decode(encoding)
     print(data)
-    if data == None:
-        return 0
+    arr = []
+    for key, val in data.items():
+        arr.append(val)
+    
     logging.info("data sent for evaluation {}".format(data))
-    a = data['maApple']
-    w = data['maWatermelon']
-    b = data['maBanana']
-    ans = a*10 + w*20 + b*30 
-    result = ans
+    result = arr[0]*10 + arr[1]*20 + arr[2]*30
     logging.info("My result :{}".format(result))
     return json.dumps(result)
