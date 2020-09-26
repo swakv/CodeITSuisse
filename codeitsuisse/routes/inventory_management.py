@@ -109,7 +109,7 @@ def evaluateIM():
             heapq.heappush(values, listAllSequence(query_string,item))
         values = sorted(values,key = lambda x:x[0])[:10]
         values = values.sort()
-        if not x[1]:
+        if not values:
             answers.append({"searchItemName":query_string, "searchResult":""})
         else:
             answers.append({"searchItemName":query_string, "searchResult":list(map(lambda x:x[1],values))
