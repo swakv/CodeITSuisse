@@ -81,10 +81,15 @@ def evaluateBS():
     # logging.info("data sent for evaluation {}".format(data))
     answer = []
     for ind, case in enumerate(data):
-        if ind < 200:# and ind>150:
-            answer.append(scribe(case['encryptedText'],case['id']))
-        else:
-            answer.append({"id": case["id"], "encryptionCount": 0, "originalText":  case['encryptedText']})
+        try:
+            if ind < 200:# and ind>150:
+                answer.append(scribe(case['encryptedText'],case['id']))
+            else:
+                answer.append({"id": case["id"], "encryptionCount": 0, "originalText":  case['encryptedText']})
+        except Exception as ex:
+            template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+            message = template.format(type(ex).__name__, ex.args)
+            print(message)
     result = answer
     # logging.info("My result :{}".format(result))
     return json.dumps(result)
