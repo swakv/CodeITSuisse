@@ -99,19 +99,26 @@ def listAllSequence(StringA,StringB):
 @app.route('/inventory-management', methods=['POST'])
 def evaluateIM():
     data = request.get_json()
+    flag=0
     # logging.info("data sent for evaluation {}".format(data))
     answers = []
     for case in data:
         values = []
         query_string = case["searchItemName"]
         database = case["items"]
+        
         for item in database:
-            heapq.heappush(values, listAllSequence(query_string,item))
+            temp = listAllSequence(query_string,item)
+            if temp == None:
+                flag = 1
+            else:
+                heapq.heappush(values, listAllSequence(query_string,item))
         # values = sorted(values,key = lambda x:x[0])[:10]
-        values = values.sort()
-        if values == None:
+        
+        if flag ==1:
             answers.append({"searchItemName":query_string, "searchResult":""})
         else:
+            values = values.sort()
             answers.append({"searchItemName":query_string, "searchResult":list(map(lambda x:x[1],values))
         })
     result = answers
