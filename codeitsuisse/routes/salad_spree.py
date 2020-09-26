@@ -9,9 +9,10 @@ logger = logging.getLogger(__name__)
 
 
 @app.route('/salad-spree', methods=['POST'])
-def evaluateSP():
+def evaluate():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
-    result = {}
-    logging.info("My result :{}".format(result))
+    n = data.get("number_of_salads")
+    arr = data.get("salad_prices_street_map")
+    result = {n: arr}
     return json.dumps(result)
