@@ -16,10 +16,11 @@ def evaluateMFB():
     print(data)
     data = eval(data)
     arr = []
+    # {'maRamubutan': 17, 'maPineapple': 23, 'maApple': 75} , our result 2880
     for key, val in data.items():
         arr.append(val)
     
     logging.info("data sent for evaluation {}".format(data))
-    result = arr[0]*10 + arr[1]*20 + arr[2]*30
+    result = arr[0]*10 + arr[1]*20 + arr[2]*70
     logging.info("My result :{}".format(result))
     return json.dumps(result)
