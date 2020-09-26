@@ -1,7 +1,7 @@
 EXPORT = {
     'maApple' : 50,
-    'maRamubutan' : 20,
-    'maPineapple': 10,
+    'maRamubutan' : 60,
+    'maPineapple': 60,
     'maPomegranate': 50,
     'maAvacado': 50
 }
