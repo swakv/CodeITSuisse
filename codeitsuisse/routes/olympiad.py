@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 @app.route('/olympiad-of-babylon', methods=['POST'])
-def evaluateCT():
+def evaluateOB():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     result = {}
