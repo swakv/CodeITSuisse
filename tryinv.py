@@ -97,24 +97,28 @@ def backtrackSequence(matrix,  StringA, StringB, i=None, j=None):
         return paths
 
 def listAllSequence(StringA,StringB):
+    oriA = StringA
+    oriB = StringB
+    StringA = StringA.lower()
+    StringB = StringB.lower()
     matrix = getMemorizationMatrix(StringA,StringB)
     allSequence = backtrackSequence(matrix,StringA,StringB)
     path = allSequence[0]
     print(path[0])
-    new_str = StringA
     for element in path[0][::-1]:
         if element[0] == "+":
-            StringA = StringA[:element[1]+1] + "+" + StringB[element[2]]+ StringA[1+element[1]:]
+            oriA = oriA[:element[1]+1] + "+" + oriB[element[2]]+ oriA[1+element[1]:]
         elif element[0] == "-":
-            StringA = StringA[:element[1]] + "-"+ StringA[element[1]:]
+            oriA = oriA[:element[1]] + "-"+ oriA[element[1]:]
         else:
-            StringA = StringA[:element[1]]+StringB[element[2]]+ StringA[1+element[1]:] 
-    print(StringA)
+            oriA = oriA[:element[1]]+oriB[element[2]]+ oriA[1+element[1]:] 
+    print(oriA)
     # for path in allSequence:
-    #     if(len(path[0])>0):
-    #         print(path[0])
-    #         print(" -> ".join(path[0])," -> ",path[1])
-    #     else:
-    #         print(StringA," -> ",StringB)
+    #     print(len(path[0]))
+        # if(len(path[0])>0):
+        #     print(path[0])
+        #     print(" -> ".join(path[0])," -> ",path[1])
+        # else:
+        #     print(StringA," -> ",StringB)
 
-listAllSequence("Samsung Aircon", "Samsunga Airon")
+listAllSequence("Samsung Aircon", "Amsungh Aircon")
