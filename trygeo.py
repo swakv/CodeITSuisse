@@ -40,7 +40,7 @@ def isBetween(a, b, c):
     crossproduct = (c[1] - a[1]) * (b[0] - a[0]) - (c[0] - a[0]) * (b[1] - a[1])
 
     # compare versus epsilon for floating point values, or != 0 if using integers
-    if abs(crossproduct) > 0.00000001:
+    if abs(crossproduct) > 0:
         return False
 
     dotproduct = (c[0] - a[0]) * (b[0] - a[0]) + (c[1] - a[1])*(b[1] - a[1])
