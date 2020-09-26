@@ -102,9 +102,13 @@ def listAllSequence(StringA,StringB):
     path = allSequence[0]
     print(path[0])
     new_str = StringA
-    for element in path[0]:
+    for element in path[0][::-1]:
         if element[0] == "+":
-            StringA[:element[1]] + "+" 
+            StringA = StringA[:element[1]] + "+" + StringB[element[2]]+ StringA[element[1]:]
+        elif element[0] == "-":
+            StringA = StringA[:element[1]] + "-"+ StringA[element[1]:]
+        else:
+            StringA = StringA[:element[1]]+StringB[element[2]]+ StringA[1+element[1]:] 
     print(StringA)
     # for path in allSequence:
     #     if(len(path[0])>0):
