@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 def evaluateMFB():
     data = request.get_data()
     encoding = 'utf-8'
-    data.decode(encoding)
+    data = data.decode(encoding)
     print(data)
     if data == None:
         return 0
