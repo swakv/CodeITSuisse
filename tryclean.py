@@ -1,26 +1,26 @@
 floor = [230, 77, 222, 3, 22, 236, 194, 224]
-
-import numpy as np
-indices = [i for i, x in enumerate(floor) if x == 0]
-
-# while np.sum(floor != 0):
-# for i in range(1, len(floor)-1):
-
+floor = floor[::-1]
 count = 0
-i=0
-
-while i < len(floor) - 1:
-    if i == 0:
-        floor[i+1] = floor[i+1] - 1
-        count += 1
-        i += 1
-        continue
-    if floor[i] < floor[i-1]:
-        floor[i-1] = floor[i-1] - 1
-        count += 1
-        i -= 1
-        if floor[i-1] == 0:
-            break
-        continue
-
-print(floor)
+while floor:
+    if len(floor)==1:
+        print(count,floor[-1])
+        if floor[-1]%2 == 0:
+            count+= (2* floor[-1])
+        else:
+            count+= (2* floor[-1]) +1
+        
+        break
+    count+= floor[-1]*2+1
+    if floor[-1]>=floor[-2]:
+        if (floor[-1]-floor[-2])%2==0:
+            floor[-2] = 1
+            floor.pop()
+        else:
+            floor.pop()
+            floor.pop()
+            count+=1
+            floor[-1] -=1
+    else:
+        floor[-2]-=floor[-1]
+        floor[-2]-=1
+        floor.pop()
