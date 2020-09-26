@@ -108,7 +108,7 @@ def evaluateIM():
         for item in database:
             heapq.heappush(values, listAllSequence(query_string,item))
         values = sorted(values,key = lambda x:x[0])[:10]
-        answers.append({"searchItemName":query_string, "searchResult":list(map(lambda x:x[0],values))
+        answers.append({"searchItemName":query_string, "searchResult":list(map(lambda x:x[1],values))
         })
     result = answers
     logging.info("My result :{}".format(result))
