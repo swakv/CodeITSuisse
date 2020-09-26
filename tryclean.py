@@ -19,6 +19,8 @@ while i < len(floor) - 1:
         floor[i-1] = floor[i-1] - 1
         count += 1
         i -= 1
+        if floor[i-1] == 0:
+            break
         continue
 
 print(floor)
