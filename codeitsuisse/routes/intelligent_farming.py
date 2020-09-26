@@ -93,7 +93,8 @@ def construct_output(structures):
     elif structures["A"]:
         end = "A"
         structures["A"]-=1
-    
+    else:
+        end =""
     accum = ""
     for key, value in structures.items():
         accum+= key*value
