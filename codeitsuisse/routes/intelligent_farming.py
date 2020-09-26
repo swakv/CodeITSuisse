@@ -105,10 +105,10 @@ def construct_output(structures):
 @app.route('/intelligent-farming', methods=['POST'])
 def evaluateGMO():
     data = request.get_json()
-    logging.info("data sent for evaluation {}".format(data))
+    logging.info("data sent for evaluation ")
     ans = []
     for ind, i in enumerate(data["list"]):
         result = gmo(i["geneSequence"])
         data["list"][ind]["geneSequence"] = result
     logging.info("My result :{}".format(data))
-    return json.dumps(data)
+    return jsonify(data)
