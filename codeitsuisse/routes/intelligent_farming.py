@@ -108,6 +108,6 @@ def evaluateGMO():
     ans = []
     for ind, i in enumerate(data["list"]):
         result = gmo(i["geneSequence"])
-        data["list"][i]["geneSequence"] = result
+        data["list"][ind]["geneSequence"] = result
     logging.info("My result :{}".format(data))
     return json.dumps(data)
