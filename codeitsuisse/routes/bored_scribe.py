@@ -62,7 +62,7 @@ def scribe(string, id_in):
     try:
         count, max_string,(start_ind, end_ind) = countPallindrome(cur_string)
     except:
-        print(id_in)
+        return {"id": id_in, "encryptionCount": 0, "originalText":  input_str}
     counter = 0
     while True:
         ceaser_key = sum(list(map(lambda x: ord(x), max_string)))+count
@@ -81,7 +81,7 @@ def evaluateBS():
     # logging.info("data sent for evaluation {}".format(data))
     answer = []
     for ind, case in enumerate(data):
-        if ind < 120:# and ind>150:
+        if ind < 2000:# and ind>150:
             answer.append(scribe(case['encryptedText'],case['id']))
         else:
             answer.append({"id": case["id"], "encryptionCount": 0, "originalText":  case['encryptedText']})
