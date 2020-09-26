@@ -58,7 +58,7 @@ def scribe(string, id_in):
 
     # start_string = min(attempts_list, key=len)
     start_string = word_list
-    logging.info("data sent for evaluation {}".format(start_ind))
+    logging.info("data sent for evaluation {}".format(start_string))
     cur_string = "".join(start_string)
     try:
         count, max_string,(start_ind, end_ind) = countPallindrome(cur_string)
