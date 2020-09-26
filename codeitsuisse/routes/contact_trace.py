@@ -83,7 +83,7 @@ def listAllSequence(StringA,StringB):
     path = allSequence[0]
     # print(path[0])
     
-    return len(path[0])
+    return len(path[0]), path
 
 
 @app.route('/contact_trace', methods=['POST'])
@@ -97,35 +97,35 @@ def evaluateCT():
             str2 = data["origin"]["genome"]
             # ITERATE THROUGH CLUSTERS ALSO 
             str3 = data["cluster"][i]["genome"]
-            sim1 = listAllSequence(str1, str2)
-            sim2 = listAllSequence(str2, str3)
+            sim1, path1 = listAllSequence(str1, str2)
+            sim2, path2 = listAllSequence(str2, str3)
 
-
+            
             output = []
 
             if (sim1 == sim2):
-                if sim1 > 1:
+                if len(path1) > 1:
                     str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
                 else:
                     str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
                 output.append(str_name)
-                if sim1 > 1:
+                if len(path1) > 1:
                     str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"]
                 else:
                     str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"]
                 output.append(str_name)
 
             elif sim1 > sim2:
-                if sim1 > 1:
+                if len(path1) > 1:
                     str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
-                elif sim2 > 1:
+                elif len(path2) > 1:
                     str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
                 else:
                     str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
                 
                 output.append(str_name)
             else:
-                if sim1>1:
+                if len(path1) >1:
                     str_name = data["infected"]["name"] + "*"+ "->" + data["origin"]["name"]
                 else:
                     str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
@@ -133,11 +133,11 @@ def evaluateCT():
         else:
             str1 = data["infected"]["genome"]
             str2 = data["origin"]["genome"]
-            sim1 = listAllSequence(str1, str2)
+            sim1, path1 = listAllSequence(str1, str2)
 
             output = []
 
-            if sim1 > 1:
+            if  len(path1)> 1:
                 str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
             else:
                 str_name = data["infected"]["name"] + "->" + data["origin"]["name"]

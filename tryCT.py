@@ -15,50 +15,19 @@ data = {
     ]
 }
 
-# data = {
-#     "infected": {
-#         "name":"orange",
-#         "genome":"acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa"
-#     },
-#     "origin": {
-#         "name":"turquoise",
-#         "genome":"acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa"
-#     },
-#     "cluster":[
-#         {
-#             "name":"magenta",
-#             "genome":"acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa"
-#         }
-#     ]
-# }
-
+data = {'infected': {'name': 'apple', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+'origin': {'name': 'banana', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+'cluster': [
+    {'name': 'mango', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+    {'name': 'grape', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+    {'name': 'orange', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+    {'name': 'pineapple', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'},
+    {'name': 'strawberry', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+    {'name': 'jackfruit', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}
+    ]
+}
 import numpy as np
 
-# def levenshtein(seq1, seq2):
-#     size_x = len(seq1) + 1
-#     size_y = len(seq2) + 1
-#     matrix = np.zeros ((size_x, size_y))
-#     for x in range(size_x):
-#         matrix [x, 0] = x
-#     for y in range(size_y):
-#         matrix [0, y] = y
-
-#     for x in range(1, size_x):
-#         for y in range(1, size_y):
-#             if seq1[x-1] == seq2[y-1]:
-#                 matrix [x,y] = min(
-#                     matrix[x-1, y] + 1,
-#                     matrix[x-1, y-1],
-#                     matrix[x, y-1] + 1
-#                 )
-#             else:
-#                 matrix [x,y] = min(
-#                     matrix[x-1,y] + 1,
-#                     matrix[x-1,y-1] + 1,
-#                     matrix[x,y-1] + 1
-#                 )
-#     # print (matrix)
-#     return (matrix, matrix[size_x - 1, size_y - 1])
 
 def getMemorizationMatrix(StringA,StringB):
     matrix = np.zeros([len(StringA)+1,len(StringB)+1])
@@ -133,44 +102,59 @@ def listAllSequence(StringA,StringB):
     path = allSequence[0]
     # print(path[0])
     
-    return len(path[0])
+    return len(path[0]), path[0]
 
-str1 = data["infected"]["genome"]
-str2 = data["origin"]["genome"]
-# ITERATE THROUGH CLUSTERS ALSO 
-str3 = data["cluster"][0]["genome"]
-sim1 = listAllSequence(str1, str2)
-sim2 = listAllSequence(str2, str3)
+for i in range(len(data["cluster"])):
+        if len(data["cluster"]) != 0:
+            str1 = data["infected"]["genome"]
+            str2 = data["origin"]["genome"]
+            # ITERATE THROUGH CLUSTERS ALSO 
+            str3 = data["cluster"][i]["genome"]
+            sim1, path1 = listAllSequence(str1, str2)
+            sim2, path2 = listAllSequence(str2, str3)
 
+            print(path1)
 
-output = []
+            output = []
 
-if (sim1 == sim2):
-    if sim1 > 1:
-        str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
-    else:
-        str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
-    output.append(str_name)
-    if sim1 > 1:
-        str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][0]["name"]
-    else:
-        str_name = data["infected"]["name"] + "->" + data["cluster"][0]["name"]
-    output.append(str_name)
+            if (sim1 == sim2):
+                if len(path1) > 1:
+                    str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
+                else:
+                    str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+                output.append(str_name)
+                if  > 1:
+                    str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"]
+                else:
+                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"]
+                output.append(str_name)
 
-elif sim1 > sim2:
-    if sim1 > 1:
-        str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][0]["name"] + "->" + data["origin"]["name"]
-    elif sim2 > 1:
-        str_name = data["infected"]["name"] + "->" + data["cluster"][0]["name"] + "*"+ "->" + data["origin"]["name"]
-    else:
-        str_name = data["infected"]["name"] + "->" + data["cluster"][0]["name"] + "->" + data["origin"]["name"]
-    
-    output.append(str_name)
-else:
-    if sim1>1:
-        str_name = data["infected"]["name"] + "*"+ "->" + data["origin"]["name"]
-    else:
-        str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
-    output.append(str_name)
+            elif sim1 > sim2:
+                if sim1 > 1:
+                    str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
+                elif sim2 > 1:
+                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
+                else:
+                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
+                
+                output.append(str_name)
+            else:
+                if sim1>1:
+                    str_name = data["infected"]["name"] + "*"+ "->" + data["origin"]["name"]
+                else:
+                    str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+                output.append(str_name)
+        else:
+            str1 = data["infected"]["genome"]
+            str2 = data["origin"]["genome"]
+            sim1 = listAllSequence(str1, str2)
+
+            output = []
+
+            if sim1 > 1:
+                str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
+            else:
+                str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+            output.append(str_name)
 
 print(output)
