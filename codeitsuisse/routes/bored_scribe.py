@@ -21,8 +21,9 @@ def countPallindrome(s):
                 if j-i > max_val:
                     max_val = j-i
                     max_palindrome = temp
+                    max_ind = (i,j)
                 counter += 1
-    return counter, max_palindrome
+    return counter, max_palindrome, max_ind
 
 
 def encrypt(text, s):
@@ -48,14 +49,16 @@ def scribe(string, id_in):
     rotations = [encrypt(string, x) for x in range(26)]
     attempts_list = []
     for attempt in rotations:
-        n = 0
-        word_len_counter = 2
+
         word_list = wordninja.split(attempt)
+        if len(word_list)<len(string)/3:
+            break
         attempts_list.append(word_list)
 
-    start_string = min(attempts_list, key=len)
+    # start_string = min(attempts_list, key=len)
+    start_string = word_list
     cur_string = "".join(start_string)
-    count, max_string = countPallindrome(cur_string)
+    count, max_string,(start_ind, end_ind) = countPallindrome(cur_string)
     counter = 0
     while True:
         ceaser_key = sum(list(map(lambda x: ord(x), max_string)))+count
@@ -65,8 +68,7 @@ def scribe(string, id_in):
         if new_str == input_str:
             break
         cur_string = new_str
-        count, max_string = countPallindrome(cur_string)
-
+        max_string = cur_string[start_ind:end_ind]
     return {"id": id_in, "encryptionCount": counter, "originalText":  " ".join(start_string)}
 
 @app.route('/bored-scribe', methods=['POST'])
