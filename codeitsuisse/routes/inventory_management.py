@@ -98,9 +98,16 @@ def listAllSequence(StringA,StringB):
 def evaluateIM():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
+    answers = []
     for case in data:
-        
-
-    result = {}
+        values = []
+        query_string = case["searchItemName"]
+        database = case["items"]
+        for item in database:
+            heapq.heappush(values, listAllSequence(query_string,item))
+        answers.append({"searchItemName":query_string, "searchResult":[
+            list(map(lambda x:x[1],heapq.nsmallest(values,10)))
+        ]})
+    result = answers
     logging.info("My result :{}".format(result))
     return json.dumps(result)

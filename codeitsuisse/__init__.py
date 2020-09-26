@@ -14,3 +14,4 @@ import codeitsuisse.routes.intelligent_farming
 import codeitsuisse.routes.clean_floor
 import codeitsuisse.routes.slsm
 import codeitsuisse.routes.bored_scribe
+import codeitsuisse.routes.inventory_management
