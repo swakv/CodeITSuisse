@@ -16,8 +16,8 @@ arr_sum = []
 # arr = np.array([10, 20, 30, 40, 50])
 for i in range(len(arr_int)):
     sums  = np.convolve(arr_int[i], np.ones(n, dtype=np.int), mode='valid')
-    arr_sum.append(sums)
-
+    arr_sum+=list(sums)
+# print(arr_sum)
 arr_sum = np.array(arr_sum)
 min_val = arr_sum.min()
 if min_val == np.inf:
