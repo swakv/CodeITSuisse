@@ -1,7 +1,7 @@
 
 import logging
 import json
-
+import heapq
 from flask import request, jsonify
 
 from codeitsuisse import app
@@ -91,13 +91,16 @@ def listAllSequence(StringA,StringB):
             oriA = oriA[:element[1]] + "-"+ oriA[element[1]:]
         else:
             oriA = oriA[:element[1]]+oriB[element[2]]+ oriA[1+element[1]:] 
-    return oriA
+    return len(path[0]),oriA
 
 
 @app.route('/inventory-management', methods=['POST'])
 def evaluateIM():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
+    for case in data:
+        
+
     result = {}
     logging.info("My result :{}".format(result))
     return json.dumps(result)

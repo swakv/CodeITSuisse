@@ -14,6 +14,7 @@ import wordninja
 def countPallindrome(s):
     max_val = -math.inf
     counter = 0
+    max_palindrome = ""
     max_ind = (0,1)
     for i in range(len(s)):
         for j in range(i+2, len(s)+1):
