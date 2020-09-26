@@ -99,7 +99,7 @@ def listAllSequence(StringA,StringB):
 @app.route('/inventory-management', methods=['POST'])
 def evaluateIM():
     data = request.get_json()
-    logging.info("data sent for evaluation {}".format(data))
+    # logging.info("data sent for evaluation {}".format(data))
     answers = []
     for case in data:
         values = []
