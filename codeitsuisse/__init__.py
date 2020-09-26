@@ -13,3 +13,4 @@ import codeitsuisse.routes.social_distancing
 import codeitsuisse.routes.intelligent_farming
 import codeitsuisse.routes.clean_floor
 import codeitsuisse.routes.slsm
+import codeitsuisse.routes.bored_scribe
