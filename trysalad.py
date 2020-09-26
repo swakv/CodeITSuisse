@@ -1,6 +1,6 @@
 import numpy as np
 
-n = 2
+n = 3
 arr = [["X", "X", "2"], ["2", "3", "X"], ["X", "3", "2"]]
 arr_int = arr
 
