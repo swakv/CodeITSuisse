@@ -4,5 +4,5 @@ EXPORT = {
     'maPineapple': 50,
     'maPomegranate': 50,
     'maAvocado': 50,
-    'maWatermelon': 50
+    'maWatermelon': 60
 }
