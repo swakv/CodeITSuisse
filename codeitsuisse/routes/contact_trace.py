@@ -93,8 +93,6 @@ def evaluateCT():
 
     for i in range(len(data["cluster"])):
         if len(data["cluster"] != 0):
-            
-
             str1 = data["infected"]["genome"]
             str2 = data["origin"]["genome"]
             # ITERATE THROUGH CLUSTERS ALSO 
@@ -132,6 +130,19 @@ def evaluateCT():
                 else:
                     str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
                 output.append(str_name)
+        else:
+            str1 = data["infected"]["genome"]
+            str2 = data["origin"]["genome"]
+            sim1 = listAllSequence(str1, str2)
+
+            output = []
+
+            if sim1 > 1:
+                str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
+            else:
+                str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+            output.append(str_name)
+                
 
     result = output
     logging.info("My result :{}".format(result))
