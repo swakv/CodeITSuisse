@@ -10,7 +10,8 @@ logger = logging.getLogger(__name__)
 
 @app.route('/fruitbasket', methods=['POST'])
 def evaluateMFB():
-    data = request.get_json()
+    data = request.get_data()
+    print(data)
     if data == None:
         return 0
     logging.info("data sent for evaluation {}".format(data))
