@@ -105,6 +105,9 @@ def construct_output(structures):
 def evaluateGMO():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
-    result = gmo(data["Input"])
-    logging.info("My result :{}".format(result))
-    return json.dumps(result)
+    ans = []
+    for ind, i in enumerate(data["list"]):
+        result = gmo(i["geneSequence"])
+        data["list"][i]["geneSequence"] = result
+    logging.info("My result :{}".format(data))
+    return json.dumps(data)
