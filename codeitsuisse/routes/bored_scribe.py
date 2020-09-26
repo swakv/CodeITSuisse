@@ -81,10 +81,10 @@ def evaluateBS():
     # logging.info("data sent for evaluation {}".format(data))
     answer = []
     for ind, case in enumerate(data):
-        if ind < 110:# and ind>150:
+        if ind < 200:# and ind>150:
             answer.append(scribe(case['encryptedText'],case['id']))
         else:
             answer.append({"id": case["id"], "encryptionCount": 0, "originalText":  case['encryptedText']})
     result = answer
-    # logging.info("My result :{}".format(result))
+    logging.info("My result :{}".format(result))
     return json.dumps(result)
