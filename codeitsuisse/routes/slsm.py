@@ -172,6 +172,8 @@ def answer(data):
     # path_bad = ucs_subop(1, 64, state_graph, len(path)+1)
     n = data["players"]
     rolls = []
+    if not path:
+        return [1]*n
     for x in range(len(path)):
         if x < len(path)-1:
             for players in range(n-1):
