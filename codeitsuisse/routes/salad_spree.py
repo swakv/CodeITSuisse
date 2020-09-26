@@ -39,6 +39,6 @@ def evaluateSP():
     else:
         ans = min_val
 
-    result = {min_val}
+    result = min_val
     logging.info("My result :{}".format(result))
     return json.dumps(result)
