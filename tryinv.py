@@ -90,7 +90,8 @@ def backtrackSequence(matrix,  StringA, StringB, i=None, j=None):
                 cS = path[1]
                 deviation = path[2]
                 path[1] = cS[0:i+deviation-1] + StringB[j-1] + cS[i+deviation:len(cS)]
-                path[0].append(cS + " replace " + StringA[i-1]  + " with " + StringB[j-1] +  "("+str(i-1+deviation)+")")
+                # path[0].append(cS + " replace " + StringA[i-1]  + " with " + StringB[j-1] +  "("+str(i-1+deviation)+")")
+                path[0].append((StringA[i-1] ,StringB[j-1] ))
             paths.extend(allPaths)
             # print('Paths',paths)
         return paths
@@ -98,10 +99,13 @@ def backtrackSequence(matrix,  StringA, StringB, i=None, j=None):
 def listAllSequence(StringA,StringB):
     matrix = getMemorizationMatrix(StringA,StringB)
     allSequence = backtrackSequence(matrix,StringA,StringB)
-    for path in allSequence:
-        if(len(path[0])>0):
-            print(" -> ".join(path[0])," -> ",path[1])
-        else:
-            print(StringA," -> ",StringB)
+    path = allSequence[0]
+    print(path[0])
+    # for path in allSequence:
+    #     if(len(path[0])>0):
+    #         print(path[0])
+    #         print(" -> ".join(path[0])," -> ",path[1])
+    #     else:
+    #         print(StringA," -> ",StringB)
 
 listAllSequence("Samsung Aircon", "Smsng Auon")
