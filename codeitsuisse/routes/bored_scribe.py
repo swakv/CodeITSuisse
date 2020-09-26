@@ -86,5 +86,5 @@ def evaluateBS():
         else:
             answer.append({"id": case["id"], "encryptionCount": 0, "originalText":  case['encryptedText']})
     result = answer
-    logging.info("My result :{}".format(result))
+    # logging.info("My result :{}".format(result))
     return json.dumps(result)
