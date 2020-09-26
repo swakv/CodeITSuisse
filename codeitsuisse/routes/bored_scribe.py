@@ -75,7 +75,7 @@ def scribe(string, id_in):
 
 @app.route('/bored-scribe', methods=['POST'])
 def evaluateBS():
-    data = request.get_json()
+    data = request.get_json()[:102]
     logging.info("data sent for evaluation {}".format(data))
     answer = []
     for case in data:
