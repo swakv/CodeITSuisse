@@ -92,19 +92,19 @@ def evaluateCT():
     logging.info("data sent for evaluation {}".format(data))
 
     df = data['cluster']
+    output = []
 
     for i in range(len(data["cluster"])):
-        while len(df) != 0:
+        if len(df) != 0:
             str1 = data["infected"]["genome"]
             str2 = data["origin"]["genome"]
-            # ITERATE THROUGH CLUSTERS ALSO 
             str3 = data["cluster"][i]["genome"]
             sim1, path1 = listAllSequence(str1, str2)
             sim2, path2 = listAllSequence(str2, str3)
 
-            print(df)
+            # print(df)
 
-            output = []
+            
 
             if (sim1 == sim2):
                 if len(path1) > 1:
@@ -136,7 +136,7 @@ def evaluateCT():
                     str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
                 output.append(str_name)
             
-            df.pop(0)
+            # df.pop(index)
         else:
             str1 = data["infected"]["genome"]
             str2 = data["origin"]["genome"]

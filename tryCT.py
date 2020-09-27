@@ -15,17 +15,18 @@ data = {
     ]
 }
 
-data = {'infected': {'name': 'apple', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-'origin': {'name': 'banana', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-'cluster': [
-    {'name': 'mango', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-    {'name': 'grape', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-    {'name': 'orange', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-    {'name': 'pineapple', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'},
-    {'name': 'strawberry', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-    {'name': 'jackfruit', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}
-    ]
-}
+data = {
+    'infected': {'name': 'apple', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+    'origin': {'name': 'banana', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+    'cluster': [
+        {'name': 'mango', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+        {'name': 'grape', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+        {'name': 'orange', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+        {'name': 'pineapple', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+        {'name': 'strawberry', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+        {'name': 'jackfruit', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}
+        ]
+        }
 import numpy as np
 
 
@@ -106,18 +107,18 @@ def listAllSequence(StringA,StringB):
 
 df = data['cluster']
 
+output = []
+#logic error - does not print all equal clusters
 for i in range(len(data["cluster"])):
-        while len(df) != 0:
+        if len(df) != 0:
             str1 = data["infected"]["genome"]
             str2 = data["origin"]["genome"]
-            # ITERATE THROUGH CLUSTERS ALSO 
             str3 = data["cluster"][i]["genome"]
             sim1, path1 = listAllSequence(str1, str2)
             sim2, path2 = listAllSequence(str2, str3)
 
-            print(df)
+            # print(df)
 
-            output = []
 
             if (sim1 == sim2):
                 if len(path1) > 1:
@@ -149,7 +150,7 @@ for i in range(len(data["cluster"])):
                     str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
                 output.append(str_name)
             
-            df.pop(0)
+            # df.pop(index)
         else:
             str1 = data["infected"]["genome"]
             str2 = data["origin"]["genome"]
