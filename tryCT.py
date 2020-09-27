@@ -28,14 +28,24 @@
 #         ]
 #         }
 
+# data = {
+#         'infected': {'name': 'v98', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         'origin': {'name': 'a21', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         'cluster': [
+#             {'name': 'y32', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#             {'name': 'y34', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#             {'name': 'o45', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}
+#             ]
+#         }
+
 data = {
-        'infected': {'name': 'v98', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-        'origin': {'name': 'a21', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-        'cluster': [
-            {'name': 'y32', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-            {'name': 'y34', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-            {'name': 'o45', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}
-            ]
+    'infected': {'name': 'figo', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+    'origin': {'name': 'a21', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+    'cluster': [
+        {'name': 'polo', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+        {'name': 'fit', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+        {'name': 'fabia', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}
+        ]
         }
 import numpy as np
 
@@ -121,6 +131,10 @@ output = []
 str1 = data["infected"]["genome"]
 str2 = data["origin"]["genome"]
 sim1, path1 = listAllSequence(str1, str2)
+for i in range(len(path1)):
+    ind = path1[i][1]
+    if ind % 4 != 0:
+        path1.pop(i)
 #logic error - does not print all equal clusters
 for i in range(len(data["cluster"])):
         if len(df) != 0:
@@ -130,10 +144,7 @@ for i in range(len(data["cluster"])):
 
             print(path1)
 
-            for i in range(len(path1)):
-                ind = path1[1]
-                if ind % 4 != 0:
-                    path1.pop(i)
+            
 
 
             if (sim1 == sim2):
