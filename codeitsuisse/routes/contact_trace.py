@@ -109,32 +109,32 @@ def evaluateCT():
 
             if (sim1 == sim2):
                 if len(path1) > 1:
-                    str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + "*" + " -> " + data["origin"]["name"]
                 else:
-                    str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
                 output.append(str_name)
                 if  len(path1) > 1:
                     index = i
-                    str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"]
+                    str_name = data["infected"]["name"] + "*" + " -> " + data["cluster"][i]["name"]
                 else:
                     index = i
-                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"]
                 output.append(str_name)
 
             elif sim1 > sim2:
                 if len(path1) > 1:
-                    str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + "*" + " -> " + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
                 elif len(path2) > 1:
-                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
                 else:
-                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
                 index = i
                 output.append(str_name)
             else:
                 if len(path1) >1:
-                    str_name = data["infected"]["name"] + "*"+ "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + "*"+ " -> " + data["origin"]["name"]
                 else:
-                    str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
                 output.append(str_name)
             
             # df.pop(index)
@@ -146,16 +146,16 @@ def evaluateCT():
             output = []
 
             if len(path1) > 1:
-                str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
+                str_name = data["infected"]["name"] + "*" + " -> " + data["origin"]["name"]
             else:
-                str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+                str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
             output.append(str_name)
                 
     # import json
     # output = json.dumps(output)
 
     output = list(set(output))
-    
+
     result = output
     logging.info("My result :{}".format(result))
     return json.dumps(result)

@@ -15,17 +15,27 @@
 #     ]
 # }
 
+# data = {
+#     'infected': {'name': 'apple', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#     'origin': {'name': 'banana', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#     'cluster': [
+#         {'name': 'mango', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         {'name': 'grape', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         {'name': 'orange', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         {'name': 'pineapple', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         {'name': 'strawberry', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         {'name': 'jackfruit', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}
+#         ]
+#         }
+
 data = {
-    'infected': {'name': 'apple', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-    'origin': {'name': 'banana', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-    'cluster': [
-        {'name': 'mango', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-        {'name': 'grape', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-        {'name': 'orange', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-        {'name': 'pineapple', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-        {'name': 'strawberry', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-        {'name': 'jackfruit', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}
-        ]
+        'infected': {'name': 'v98', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+        'origin': {'name': 'a21', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+        'cluster': [
+            {'name': 'y32', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+            {'name': 'y34', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+            {'name': 'o45', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}
+            ]
         }
 import numpy as np
 
