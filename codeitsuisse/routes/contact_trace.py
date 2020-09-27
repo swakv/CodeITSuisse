@@ -96,8 +96,10 @@ def evaluateCT():
     str1 = data["infected"]["genome"]
     str2 = data["origin"]["genome"]
     sim1, path1 = listAllSequence(str1, str2)
+
     for i in range(len(path1)):
         ind = path1[i][1]
+        print(ind)
         if ind % 4 != 0:
             path1.pop(i)
 
