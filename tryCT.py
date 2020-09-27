@@ -138,32 +138,32 @@ for i in range(len(data["cluster"])):
 
             if (sim1 == sim2):
                 if len(path1) > 1:
-                    str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + "*" + " -> " + data["origin"]["name"]
                 else:
-                    str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
                 output.append(str_name)
                 if  len(path1) > 1:
                     index = i
-                    str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"]
+                    str_name = data["infected"]["name"] + "*" + " -> " + data["cluster"][i]["name"]
                 else:
                     index = i
-                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"]
                 output.append(str_name)
 
             elif sim1 > sim2:
                 if len(path1) > 1:
-                    str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + "*" + " -> " + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
                 elif len(path2) > 1:
-                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
                 else:
-                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
                 index = i
                 output.append(str_name)
             else:
                 if len(path1) >1:
-                    str_name = data["infected"]["name"] + "*"+ "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + "*"+ " -> " + data["origin"]["name"]
                 else:
-                    str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
                 output.append(str_name)
             
             # df.pop(index)
@@ -175,9 +175,9 @@ for i in range(len(data["cluster"])):
             output = []
 
             if len(path1) > 1:
-                str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
+                str_name = data["infected"]["name"] + "*" + " -> " + data["origin"]["name"]
             else:
-                str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+                str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
             output.append(str_name)
 
 
@@ -185,7 +185,6 @@ for i in range(len(data["cluster"])):
 # output = json.dumps(output)
 # print(type(output))
 output = list(set(output))
-for i in output:
-    i = str(i)
 
+output.sort()
 print(output)

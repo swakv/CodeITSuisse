@@ -118,7 +118,7 @@ def evaluateIM():
         if flag ==1:
             answers.append({"searchItemName":query_string, "searchResult":""})
         else:
-            values = values.sort()
+            values.sort()
             print(values)
             if values == None:
                 answers.append({"searchItemName":query_string, "searchResult":""})
