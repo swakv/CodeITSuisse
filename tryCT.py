@@ -1,19 +1,19 @@
-data = {
-    "infected": {
-        "name":"plastic",
-        "genome":"acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa"
-    },
-    "origin": {
-        "name":"metal",
-        "genome":"acg-acu-uca-gca-acu-ccc-gua-acg-ccu-uca-gca-acu-cac-gac"
-    },
-    "cluster":[
-        {
-            "name":"thread",
-            "genome":"acg-acu-uca-gca-acu-ccc-gua-acg-ccu-uca-gca-acu-cac-gaa"
-        }
-    ]
-}
+# data = {
+#     "infected": {
+#         "name":"plastic",
+#         "genome":"acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa"
+#     },
+#     "origin": {
+#         "name":"metal",
+#         "genome":"acg-acu-uca-gca-acu-ccc-gua-acg-ccu-uca-gca-acu-cac-gac"
+#     },
+#     "cluster":[
+#         {
+#             "name":"thread",
+#             "genome":"acg-acu-uca-gca-acu-ccc-gua-acg-ccu-uca-gca-acu-cac-gaa"
+#         }
+#     ]
+# }
 
 data = {
     'infected': {'name': 'apple', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
@@ -164,6 +164,8 @@ for i in range(len(data["cluster"])):
                 str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
             output.append(str_name)
 
-        
+
+import json
+output = json.dumps(output)
 
 print(output)
