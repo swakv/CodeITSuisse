@@ -165,7 +165,10 @@ for i in range(len(data["cluster"])):
             output.append(str_name)
 
 
-import json
-output = json.dumps(output)
+# import json
+# output = json.dumps(output)
+# print(type(output))
+for i in output:
+    i = str(i)
 
 print(output)

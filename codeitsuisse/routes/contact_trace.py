@@ -150,8 +150,9 @@ def evaluateCT():
                 str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
             output.append(str_name)
                 
-    import json
-    output = json.dumps(output)
+    # import json
+    # output = json.dumps(output)
+
 
     result = output
     logging.info("My result :{}".format(result))
