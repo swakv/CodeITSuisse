@@ -99,6 +99,7 @@ def evaluateCT():
     str2 = data["origin"]["genome"]
     sim1, path1 = listAllSequence(str1, str2)
     if len(path1) != 0:
+        print(path1)
         for i in range(len(path1)):
             ind = path1[i][1]
             if ind % 4 != 0:
@@ -110,9 +111,7 @@ def evaluateCT():
                 str3 = data["cluster"][i]["genome"]
                 sim2, path2 = listAllSequence(str1, str3)
 
-                print(path1)
-
-                
+                # print(path1)
 
 
                 if (sim1 == sim2):
