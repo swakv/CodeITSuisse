@@ -96,71 +96,72 @@ def evaluateCT():
     str1 = data["infected"]["genome"]
     str2 = data["origin"]["genome"]
     sim1, path1 = listAllSequence(str1, str2)
-
     for i in range(len(path1)):
         ind = path1[i][1]
-        print(ind)
         if ind % 4 != 0:
             path1.pop(i)
-
+    #logic error - does not print all equal clusters
     for i in range(len(data["cluster"])):
-        if len(df) != 0:
-            
-            str3 = data["cluster"][i]["genome"]
-            sim2, path2 = listAllSequence(str1, str3)
+            if len(df) != 0:
+                
+                str3 = data["cluster"][i]["genome"]
+                sim2, path2 = listAllSequence(str1, str3)
 
-            # print(df)
+                print(path1)
 
-            
+                
 
-            if (sim1 == sim2):
+
+                if (sim1 == sim2):
+                    if len(path1) > 1:
+                        str_name = data["infected"]["name"] + "*" + " -> " + data["origin"]["name"]
+                    else:
+                        str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
+                    output.append(str_name)
+                    if  len(path1) > 1:
+                        index = i
+                        str_name = data["infected"]["name"] + "*" + " -> " + data["cluster"][i]["name"]
+                    else:
+                        index = i
+                        str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"]
+                    output.append(str_name)
+
+                elif sim1 > sim2:
+                    if len(path1) > 1:
+                        str_name = data["infected"]["name"] + "*" + " -> " + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
+                    elif len(path2) > 1:
+                        str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
+                    else:
+                        str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
+                    index = i
+                    output.append(str_name)
+                else:
+                    if len(path1) >1:
+                        str_name = data["infected"]["name"] + "*"+ " -> " + data["origin"]["name"]
+                    else:
+                        str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
+                    output.append(str_name)
+                
+                # df.pop(index)
+            else:
+                str1 = data["infected"]["genome"]
+                str2 = data["origin"]["genome"]
+                sim1 = listAllSequence(str1, str2)
+
+                output = []
+
                 if len(path1) > 1:
                     str_name = data["infected"]["name"] + "*" + " -> " + data["origin"]["name"]
                 else:
                     str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
                 output.append(str_name)
-                if  len(path1) > 1:
-                    index = i
-                    str_name = data["infected"]["name"] + "*" + " -> " + data["cluster"][i]["name"]
-                else:
-                    index = i
-                    str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"]
-                output.append(str_name)
 
-            elif sim1 > sim2:
-                if len(path1) > 1:
-                    str_name = data["infected"]["name"] + "*" + " -> " + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
-                elif len(path2) > 1:
-                    str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
-                else:
-                    str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
-                index = i
-                output.append(str_name)
-            else:
-                if len(path1) >1:
-                    str_name = data["infected"]["name"] + "*"+ " -> " + data["origin"]["name"]
-                else:
-                    str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
-                output.append(str_name)
-            
-            # df.pop(index)
-        else:
-            str1 = data["infected"]["genome"]
-            str2 = data["origin"]["genome"]
-            sim1 = listAllSequence(str1, str2)
 
-            output = []
-
-            if len(path1) > 1:
-                str_name = data["infected"]["name"] + "*" + " -> " + data["origin"]["name"]
-            else:
-                str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
-            output.append(str_name)
-                
     # import json
     # output = json.dumps(output)
-
+    # print(type(output))
     output = list(set(output))
+
     output.sort()
 
     result = output
