@@ -99,7 +99,7 @@ def evaluateCT():
     for i in range(len(path1)):
         print(path1)
         ind = path1[i][1]
-        if ind % 4 != 0:
+        if ind[1] % 4 != 0:
             path1.pop(i)
 
     #logic error - does not print all equal clusters
