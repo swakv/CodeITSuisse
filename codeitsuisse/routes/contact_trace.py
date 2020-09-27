@@ -102,7 +102,8 @@ def evaluateCT():
             sim1, path1 = listAllSequence(str1, str2)
             sim2, path2 = listAllSequence(str2, str3)
 
-            
+            print(df)
+
             output = []
 
             if (sim1 == sim2):
@@ -111,7 +112,7 @@ def evaluateCT():
                 else:
                     str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
                 output.append(str_name)
-                if len(path1) > 1:
+                if  len(path1) > 1:
                     index = i
                     str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"]
                 else:
@@ -134,15 +135,16 @@ def evaluateCT():
                 else:
                     str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
                 output.append(str_name)
+            
             df.pop(0)
         else:
             str1 = data["infected"]["genome"]
             str2 = data["origin"]["genome"]
-            sim1, path1 = listAllSequence(str1, str2)
+            sim1 = listAllSequence(str1, str2)
 
             output = []
 
-            if  len(path1)> 1:
+            if len(path1) > 1:
                 str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
             else:
                 str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
