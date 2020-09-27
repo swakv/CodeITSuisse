@@ -106,8 +106,9 @@ def evaluateCT():
             if ind % 4 != 0:
                 path1.pop(i)
     #logic error - does not print all equal clusters
-    for i in range(len(data["cluster"])):
-            if len(df) != 0:
+        if len(df) != 0:
+            for i in range(len(data["cluster"])):
+            
                 
                 str3 = data["cluster"][i]["genome"]
                 sim2, path2 = listAllSequence(str1, str3)
@@ -146,18 +147,16 @@ def evaluateCT():
                     output.append(str_name)
                 
                 # df.pop(index)
+        else:
+            str1 = data["infected"]["genome"]
+            str2 = data["origin"]["genome"]
+            sim1, path1 = listAllSequence(str1, str2)
+
+            if len(path1) > 1:
+                str_name = data["infected"]["name"] + "*" + " -> " + data["origin"]["name"]
             else:
-                str1 = data["infected"]["genome"]
-                str2 = data["origin"]["genome"]
-                sim1 = listAllSequence(str1, str2)
-
-                output = []
-
-                if len(path1) > 1:
-                    str_name = data["infected"]["name"] + "*" + " -> " + data["origin"]["name"]
-                else:
-                    str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
-                output.append(str_name)
+                str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
+            output.append(str_name)
 
 
     # import json
