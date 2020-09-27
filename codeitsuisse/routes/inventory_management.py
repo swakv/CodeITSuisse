@@ -119,7 +119,7 @@ def evaluateIM():
             answers.append({"searchItemName":query_string, "searchResult":""})
         else:
             values.sort()
-            print(values)
+            # print(values)
             if values == None:
                 answers.append({"searchItemName":query_string, "searchResult":""})
             else: 
