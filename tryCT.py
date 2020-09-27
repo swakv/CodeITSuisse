@@ -132,7 +132,7 @@ str1 = data["infected"]["genome"]
 str2 = data["origin"]["genome"]
 sim1, path1 = listAllSequence(str1, str2)
 print("path1", path1)
-for i in range(len(path1)):
+for i in range(len(path1)-1,-1, -1):
     ind = path1[i][1]
     if ind % 4 != 0:
         path1.pop(i)
