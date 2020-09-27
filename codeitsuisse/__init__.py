@@ -17,3 +17,4 @@ import codeitsuisse.routes.bored_scribe
 import codeitsuisse.routes.inventory_management
 import codeitsuisse.routes.supermarket
 import codeitsuisse.routes.pretrick
+import codeitsuisse.routes.yin_yang
