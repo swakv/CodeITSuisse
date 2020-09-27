@@ -18,3 +18,4 @@ import codeitsuisse.routes.inventory_management
 import codeitsuisse.routes.supermarket
 import codeitsuisse.routes.pretrick
 import codeitsuisse.routes.yin_yang
+import codeitsuisse.routes.bucket_fill
