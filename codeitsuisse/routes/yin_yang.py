@@ -7,6 +7,14 @@ from codeitsuisse import app
 
 logger = logging.getLogger(__name__)
 
+expectation = {'YyyYyyYyYYyYYYyYyYYYyyYyYyyYy': 14.8406679481,
+               'yYyYyYyYyYyYyYyYyYyYyYyYyYyYy': 12.1760852506,
+               'YyYyYyYyYyYyYyYyYyYyYyYyYyYyY': 14.9975369458,
+               'YyYyYyYyYyYyYyYyYyYyYyYyYyYyY': 12.8968705396,
+               'YyYyyYYyYyyYYyYyyYYyyYyyYyYyY': 13.4505389220}
+
+
+
 def yinyang(number_of_elements=10, number_of_operations=10, elements=""):
     n = number_of_elements
     k = number_of_operations
