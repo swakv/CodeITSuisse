@@ -104,8 +104,10 @@ def listAllSequence(StringA,StringB):
     
     return len(path[0]), path[0]
 
+df = data['cluster']
+
 for i in range(len(data["cluster"])):
-        if len(data["cluster"]) != 0:
+        while len(df) != 0:
             str1 = data["infected"]["genome"]
             str2 = data["origin"]["genome"]
             # ITERATE THROUGH CLUSTERS ALSO 
@@ -113,7 +115,7 @@ for i in range(len(data["cluster"])):
             sim1, path1 = listAllSequence(str1, str2)
             sim2, path2 = listAllSequence(str2, str3)
 
-            print(path1)
+            print(df)
 
             output = []
 
@@ -123,27 +125,31 @@ for i in range(len(data["cluster"])):
                 else:
                     str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
                 output.append(str_name)
-                if  > 1:
+                if  len(path1) > 1:
+                    index = i
                     str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"]
                 else:
+                    index = i
                     str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"]
                 output.append(str_name)
 
             elif sim1 > sim2:
-                if sim1 > 1:
+                if len(path1) > 1:
                     str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
-                elif sim2 > 1:
+                elif len(path2) > 1:
                     str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
                 else:
                     str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
-                
+                index = i
                 output.append(str_name)
             else:
-                if sim1>1:
+                if len(path1) >1:
                     str_name = data["infected"]["name"] + "*"+ "->" + data["origin"]["name"]
                 else:
                     str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
                 output.append(str_name)
+            
+            df.pop(0)
         else:
             str1 = data["infected"]["genome"]
             str2 = data["origin"]["genome"]
@@ -151,10 +157,12 @@ for i in range(len(data["cluster"])):
 
             output = []
 
-            if sim1 > 1:
+            if len(path1) > 1:
                 str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
             else:
                 str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
             output.append(str_name)
+
+        
 
 print(output)

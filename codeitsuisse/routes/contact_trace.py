@@ -91,8 +91,10 @@ def evaluateCT():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
 
+    df = data['cluster']
+
     for i in range(len(data["cluster"])):
-        if len(data["cluster"]) != 0:
+        while len(df) != 0:
             str1 = data["infected"]["genome"]
             str2 = data["origin"]["genome"]
             # ITERATE THROUGH CLUSTERS ALSO 
@@ -110,8 +112,10 @@ def evaluateCT():
                     str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
                 output.append(str_name)
                 if len(path1) > 1:
+                    index = i
                     str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"]
                 else:
+                    index = i
                     str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"]
                 output.append(str_name)
 
@@ -122,7 +126,7 @@ def evaluateCT():
                     str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
                 else:
                     str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
-                
+                index = i
                 output.append(str_name)
             else:
                 if len(path1) >1:
@@ -130,6 +134,7 @@ def evaluateCT():
                 else:
                     str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
                 output.append(str_name)
+            df.pop(0)
         else:
             str1 = data["infected"]["genome"]
             str2 = data["origin"]["genome"]
