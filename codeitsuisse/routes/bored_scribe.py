@@ -97,4 +97,4 @@ def evaluateBS():
             logging.info(message)
     result = answer
     # logging.info("My result :{}".format(result))
-    return json.dumps(result)
+    return jsonify(result)
