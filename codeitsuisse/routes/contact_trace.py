@@ -93,14 +93,15 @@ def evaluateCT():
 
     df = data['cluster']
     output = []
+    str1 = data["infected"]["genome"]
+    str2 = data["origin"]["genome"]
+    sim1, path1 = listAllSequence(str1, str2)
 
     for i in range(len(data["cluster"])):
         if len(df) != 0:
-            str1 = data["infected"]["genome"]
-            str2 = data["origin"]["genome"]
+            
             str3 = data["cluster"][i]["genome"]
-            sim1, path1 = listAllSequence(str1, str2)
-            sim2, path2 = listAllSequence(str2, str3)
+            sim2, path2 = listAllSequence(str1, str3)
 
             # print(df)
 
