@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 @app.route('/pre-trick', methods=['POST'])
-def evaluateSLSM():
+def evaluatePT():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     result = data
