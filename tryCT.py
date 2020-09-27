@@ -169,6 +169,7 @@ for i in range(len(data["cluster"])):
 # import json
 # output = json.dumps(output)
 # print(type(output))
+output = list(set(output))
 for i in output:
     i = str(i)
 

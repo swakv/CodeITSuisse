@@ -154,7 +154,8 @@ def evaluateCT():
     # import json
     # output = json.dumps(output)
 
-
+    output = list(set(output))
+    
     result = output
     logging.info("My result :{}".format(result))
     return json.dumps(result)
