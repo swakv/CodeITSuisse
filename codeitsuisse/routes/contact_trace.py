@@ -98,10 +98,11 @@ def evaluateCT():
     str1 = data["infected"]["genome"]
     str2 = data["origin"]["genome"]
     sim1, path1 = listAllSequence(str1, str2)
-    for i in range(len(path1)):
-        ind = path1[i][1]
-        if ind % 4 != 0:
-            path1.pop(i)
+    if len(path1) != 0:
+        for i in range(len(path1)):
+            ind = path1[i][1]
+            if ind % 4 != 0:
+                path1.pop(i)
     #logic error - does not print all equal clusters
     for i in range(len(data["cluster"])):
             if len(df) != 0:
