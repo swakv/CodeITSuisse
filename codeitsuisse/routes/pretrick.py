@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 
-@app.route('/pre-trick', methods=['POST'])
+@app.route('/pre-tick', methods=['POST'])
 def evaluatePT():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
