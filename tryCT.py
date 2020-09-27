@@ -15,18 +15,33 @@
 #     ]
 # }
 
+# data = {
+#     'infected': {'name': 'apple', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#     'origin': {'name': 'banana', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#     'cluster': [
+#         {'name': 'mango', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         {'name': 'grape', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         {'name': 'orange', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         {'name': 'pineapple', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         {'name': 'strawberry', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         {'name': 'jackfruit', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}
+#         ]
+#         }
+
 data = {
-    'infected': {'name': 'apple', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-    'origin': {'name': 'banana', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-    'cluster': [
-        {'name': 'mango', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-        {'name': 'grape', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-        {'name': 'orange', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-        {'name': 'pineapple', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-        {'name': 'strawberry', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
-        {'name': 'jackfruit', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}
-        ]
-        }
+    'infected': {'name': 'v98', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+    'origin': {'name': 'a21', 'genome': 'acg-gcc-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gac'}, 
+    'cluster': []}
+
+# data = {
+#     'infected': {'name': 'figo', 'genome': 'acg-gcu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#     'origin': {'name': 'a21', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#     'cluster': [
+#         {'name': 'polo', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         {'name': 'fit', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}, 
+#         {'name': 'fabia', 'genome': 'ccg-ccu-uca-gca-acu-ccc-gua-acg-gcu-uca-gca-acu-cac-gaa'}
+#         ]
+#         }
 import numpy as np
 
 
@@ -106,76 +121,71 @@ def listAllSequence(StringA,StringB):
     return len(path[0]), path[0]
 
 df = data['cluster']
-
+print(len(df))
 output = []
 str1 = data["infected"]["genome"]
 str2 = data["origin"]["genome"]
 sim1, path1 = listAllSequence(str1, str2)
+# print("path1", path1)
+for i in range(len(path1)-1,-1, -1):
+    ind = path1[i][1]
+    if ind % 4 != 0:
+        path1.pop(i)
 #logic error - does not print all equal clusters
-for i in range(len(data["cluster"])):
-        if len(df) != 0:
-            
+if len(df) != 0:
+    for i in range(len(data["cluster"])):
             str3 = data["cluster"][i]["genome"]
             sim2, path2 = listAllSequence(str1, str3)
 
-            print(path1)
-
-            for i in range(len(path1)):
-                ind = path1[1]
-                if ind % 4 != 0:
-                    path1.pop(i)
-
-
             if (sim1 == sim2):
                 if len(path1) > 1:
-                    str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + "*" + " -> " + data["origin"]["name"]
                 else:
-                    str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
                 output.append(str_name)
                 if  len(path1) > 1:
                     index = i
-                    str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"]
+                    str_name = data["infected"]["name"] + "*" + " -> " + data["cluster"][i]["name"]
                 else:
                     index = i
-                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"]
                 output.append(str_name)
 
             elif sim1 > sim2:
                 if len(path1) > 1:
-                    str_name = data["infected"]["name"] + "*" + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + "*" + " -> " + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
                 elif len(path2) > 1:
-                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"] + "*"+ "->" + data["origin"]["name"]
                 else:
-                    str_name = data["infected"]["name"] + "->" + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["cluster"][i]["name"] + "->" + data["origin"]["name"]
                 index = i
                 output.append(str_name)
             else:
                 if len(path1) >1:
-                    str_name = data["infected"]["name"] + "*"+ "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + "*"+ " -> " + data["origin"]["name"]
                 else:
-                    str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
+                    str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
                 output.append(str_name)
             
-            # df.pop(index)
-        else:
-            str1 = data["infected"]["genome"]
-            str2 = data["origin"]["genome"]
-            sim1 = listAllSequence(str1, str2)
 
-            output = []
+else:
+    # print("here")
+    str1 = data["infected"]["genome"]
+    str2 = data["origin"]["genome"]
+    sim1, path1 = listAllSequence(str1, str2)
+    # print("path1",path1)
 
-            if len(path1) > 1:
-                str_name = data["infected"]["name"] + "*" + "->" + data["origin"]["name"]
-            else:
-                str_name = data["infected"]["name"] + "->" + data["origin"]["name"]
-            output.append(str_name)
+    if len(path1) > 1:
+        str_name = data["infected"]["name"] + "*" + " -> " + data["origin"]["name"]
+    else:
+        str_name = data["infected"]["name"] + " -> " + data["origin"]["name"]
+    output.append(str_name)
 
 
 # import json
 # output = json.dumps(output)
 # print(type(output))
 output = list(set(output))
-for i in output:
-    i = str(i)
 
+output.sort()
 print(output)
