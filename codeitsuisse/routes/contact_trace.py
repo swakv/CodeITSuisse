@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 
 import numpy as np
 
+
 def getMemorizationMatrix(StringA,StringB):
     matrix = np.zeros([len(StringA)+1,len(StringB)+1])
     
@@ -83,7 +84,7 @@ def listAllSequence(StringA,StringB):
     path = allSequence[0]
     # print(path[0])
     
-    return len(path[0]), path
+    return len(path[0]), path[0]
 
 
 @app.route('/contact_trace', methods=['POST'])
@@ -92,19 +93,15 @@ def evaluateCT():
     logging.info("data sent for evaluation {}".format(data))
 
     df = data['cluster']
+
     output = []
     str1 = data["infected"]["genome"]
     str2 = data["origin"]["genome"]
     sim1, path1 = listAllSequence(str1, str2)
     for i in range(len(path1)):
-        # print(path1)
         ind = path1[i][1]
-        try:
-            if ind[1] % 4 != 0:
-                path1.pop(i)
-        except:
-            continue
-
+        if ind % 4 != 0:
+            path1.pop(i)
     #logic error - does not print all equal clusters
     for i in range(len(data["cluster"])):
             if len(df) != 0:
@@ -168,7 +165,6 @@ def evaluateCT():
     output = list(set(output))
 
     output.sort()
-
     result = output
     logging.info("My result :{}".format(result))
     return json.dumps(result)
