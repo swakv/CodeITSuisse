@@ -118,7 +118,12 @@ for i in range(len(data["cluster"])):
             str3 = data["cluster"][i]["genome"]
             sim2, path2 = listAllSequence(str1, str3)
 
-            # print(df)
+            print(path1)
+
+            for i in range(len(path1)):
+                ind = path1[1]
+                if ind % 4 != 0:
+                    path1.pop(i)
 
 
             if (sim1 == sim2):
